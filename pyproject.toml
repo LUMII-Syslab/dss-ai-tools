@@ -1,0 +1,24 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "dss-ai-tools"
+version = "0.1.0"
+description = "Command-line client for exploring a Data Shape Server (DSS) knowledge-graph schemas."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+keywords = ["dss", "data-shape-server", "rdf", "sparql", "knowledge-graphs", "mcp", "claude"]
+dependencies = []
+
+[project.scripts]
+dss = "dss:main"
+
+[project.urls]
+Homepage = "https://github.com/LUMII-Syslab/dss-ai-tools"
+Repository = "https://github.com/LUMII-Syslab/dss-ai-tools"
+
+[tool.hatch.build.targets.wheel]
+# The CLI is a single top-level module (dss.py)
+include = ["dss.py"]
