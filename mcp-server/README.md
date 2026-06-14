@@ -75,20 +75,23 @@ mcp dev dss_mcp.py
 
 ## Tools
 
-| Tool | DSS endpoint |
+DSS refers to data schemas as *ontologies* and uses that term throughout its API.
+For consistency, the CLI and this MCP server adopt the same naming.
+
+| Tool | Description |
 | --- | --- |
-| `list_ontologies(variant="default", tag=None)` | `GET /api/info[2-5\|OntTags]`, `GET /api/info3/<tag>` |
-| `schema_tags()` | `GET /api/schema_tags` |
-| `public_ns()` | `GET /api/public_ns` |
-| `namespaces(ontology)` | `GET /api/ontologies/<ont>/ns` |
-| `list_classes(ontology, limit=100, filter=None)` | `POST .../getClasses` |
-| `list_properties(ontology, kind="All", limit=100, filter=None)` | `POST .../getProperties` |
-| `resolve_class(ontology, name)` | `POST .../resolveClassByName` |
-| `resolve_property(ontology, name)` | `POST .../resolvePropertyByName` |
-| `class_out_properties(ontology, class_id, limit=200)` | `POST .../xx_getClassOutProperties` (by `c_id`) |
-| `class_in_properties(ontology, class_id, limit=200)` | `POST .../xx_getClassInProperties` (by `c_id`) |
-| `class_pairs(ontology, p_list)` | `POST .../xx_getCPCInfoNew` — (source, target) class pairs for a property |
-| `call(ontology, fn, params=None)` | `POST .../<fn>` (escape hatch) |
+| `list_ontologies(variant="default", tag=None)` | List the ontologies (schemas) loaded in DSS, optionally filtered by tag. |
+| `schema_tags()` | List the tags used to group schemas. |
+| `public_ns()` | List the globally known namespace prefixes shared across ontologies. |
+| `namespaces(ontology)` | List the namespace prefixes declared in one ontology. |
+| `list_classes(ontology, limit=100, filter=None)` | List classes in an ontology; narrow with a name filter. |
+| `list_properties(ontology, kind="All", limit=100, filter=None)` | List properties in an ontology, optionally by kind; narrow with a name filter. |
+| `resolve_class(ontology, name)` | Look up a class by its prefixed name and return its metadata, including its id. |
+| `resolve_property(ontology, name)` | Look up a property by its prefixed name and return its metadata, including its id. |
+| `class_out_properties(ontology, class_id, limit=200)` | List the properties that originate from a class (outgoing). |
+| `class_in_properties(ontology, class_id, limit=200)` | List the properties that point to a class (incoming). |
+| `class_pairs(ontology, p_list)` | List the (source, target) class pairs that a property connects. |
+| `call(ontology, fn, params=None)` | Generic API call: invoke any other DSS function not covered by the tools above. |
 
 The `class_*` tools key on numeric ids: get a `class_id` from `resolve_class` and a property id (`p_list`) from `resolve_property`.
 
