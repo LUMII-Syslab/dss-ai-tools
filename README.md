@@ -1,3 +1,4 @@
+[![PyPI](https://img.shields.io/pypi/v/dss-ai-tools.svg)](https://pypi.org/project/dss-ai-tools/)
 [![License](http://img.shields.io/:license-mit-blue.svg)](https://raw.githubusercontent.com/LUMII-Syslab/viziquer/master/LICENSE)
 # dss-ai-tools
 
@@ -28,12 +29,18 @@ The CLI and MCP tools also accept a per-call override (`--base-url` / `base_url`
 python3 dss.py --help
 ```
 
-Install on your PATH (optional):
+Install from PyPI to get the `dss` command on your PATH:
+
+```bash
+pipx install dss-ai-tools     # provides the `dss` command
+# or run without installing:
+uvx --from dss-ai-tools dss --help
+```
+
+Or install from a checkout of this repo:
 
 ```bash
 pipx install .          # provides the `dss` command (see pyproject.toml)
-# or, no packaging:
-ln -s "$(pwd)/dss.py" ~/.local/bin/dss && chmod +x dss.py
 ```
 
 ### Commands
