@@ -93,7 +93,7 @@ For consistency, the CLI and this MCP server adopt the same naming.
 | `class_pairs(ontology, p_list)` | List the (source, target) class pairs that a property connects. |
 | `call(ontology, fn, params=None)` | Generic API call: invoke any other DSS function not covered by the tools above. |
 
-The `class_*` tools key on numeric ids: get a `class_id` from `resolve_class` and a property id (`p_list`) from `resolve_property`.
+The `class_*` tools use numeric ids: get a `class_id` from `resolve_class` and a property id (`p_list`) from `resolve_property`.
 
 ## Register with a client
 

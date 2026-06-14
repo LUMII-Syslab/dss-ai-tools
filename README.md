@@ -2,7 +2,7 @@
 [![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/LUMII-Syslab/dss-ai-tools/blob/main/LICENSE)
 # dss-ai-tools
 
-Tools for exploring a [Data Shape Server (DSS)](https://github.com/LUMII-Syslab/data-shape-server) knowledge graph schemas — classes, properties, their relations, and namespaces — over the DSS HTTP API. There are three ways to use it, all sharing one small client:
+Tools for exploring [Data Shape Server (DSS)](https://github.com/LUMII-Syslab/data-shape-server) knowledge graph schemas — classes, properties, their relations, and namespaces — over the DSS HTTP API. There are three ways to use it, all sharing one small client:
 
 | Component | What it is | Where |
 | --- | --- | --- |
@@ -45,22 +45,24 @@ pipx install .          # provides the `dss` command (see pyproject.toml)
 
 ### Commands
 
-| Command | DSS endpoint |
-| --- | --- |
-| `ontologies [--variant ...] [--tag TAG]` | `GET /api/info` (variants `2`–`5`, `tags`; `--tag` with variant `3`) |
-| `schema-tags` | `GET /api/schema_tags` |
-| `public-ns` | `GET /api/public_ns` |
-| `namespaces <ont>` | `GET /api/ontologies/<ont>/ns` |
-| `classes <ont> [--limit N] [--filter STR]` | `POST .../getClasses` |
-| `properties <ont> [--limit N] [--filter REGEX] [--kind ...]` | `POST .../getProperties` |
-| `resolve-class <ont> <name>` | `POST .../resolveClassByName` |
-| `resolve-property <ont> <name>` | `POST .../resolvePropertyByName` |
-| `class-out-properties <ont> <class_id> [--limit N]` | `POST .../xx_getClassOutProperties` (by `c_id`) |
-| `class-in-properties <ont> <class_id> [--limit N]` | `POST .../xx_getClassInProperties` (by `c_id`) |
-| `class-pairs <ont> <p_list>` | `POST .../xx_getCPCInfoNew` — (source, target) class pairs for a property |
-| `call <ont> <fn> [--body JSON\|-] [--param k=v ...]` | `POST .../<fn>` (escape hatch) |
+DSS refers to data schemas as *ontologies* and uses that term throughout its API; the CLI follows the same naming.
 
-The `class-*` commands key on numeric ids: get a class id from `resolve-class` and a property id from `resolve-property`.
+| Command | Description |
+| --- | --- |
+| `ontologies [--variant ...] [--tag TAG]` | List the ontologies (schemas) loaded in DSS; `--variant` selects an alternate info view, `--tag` filters (with variant `3`). |
+| `schema-tags` | List the tags used to group ontologies. |
+| `public-ns` | List the globally known namespace prefixes shared across ontologies. |
+| `namespaces <ont>` | List the namespace prefixes declared in one ontology. |
+| `classes <ont> [--limit N] [--filter STR]` | List classes in an ontology; narrow with a name filter. |
+| `properties <ont> [--limit N] [--filter REGEX] [--kind ...]` | List properties in an ontology, optionally by kind; narrow with a name filter. |
+| `resolve-class <ont> <name>` | Look up a class by its prefixed name; returns its metadata, including its id. |
+| `resolve-property <ont> <name>` | Look up a property by its prefixed name; returns its metadata, including its id. |
+| `class-out-properties <ont> <class_id> [--limit N]` | List the properties that originate from a class (outgoing). |
+| `class-in-properties <ont> <class_id> [--limit N]` | List the properties that point to a class (incoming). |
+| `class-pairs <ont> <p_list>` | List the (source, target) class pairs that a property connects. |
+| `call <ont> <fn> [--body JSON\|-] [--param k=v ...]` | Generic API call: invoke any DSS function not covered by the commands above. |
+
+The `class-*` commands use numeric ids: get a class id from `resolve-class` and a property id from `resolve-property`.
 
 Output is indented human-readable JSON by default; pass `--compact` for single-line (pipe-friendly).
 
@@ -84,7 +86,7 @@ See [`docs/USAGE.md`](https://github.com/LUMII-Syslab/dss-ai-tools/blob/main/doc
 
 ## MCP server
 
-See [`mcp-server/README.md`](https://github.com/LUMII-Syslab/dss-ai-tools/blob/main/mcp-server/README.md). 
+See [`mcp-server/README.md`](https://github.com/LUMII-Syslab/dss-ai-tools/blob/main/mcp-server/README.md).
 
 You can register it from the published PyPI package (no checkout needed).
 
