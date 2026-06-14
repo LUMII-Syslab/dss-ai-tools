@@ -84,7 +84,14 @@ See [`docs/USAGE.md`](docs/USAGE.md) for setup, pointing it at a server, and exa
 
 ## MCP server
 
-See [`mcp-server/README.md`](mcp-server/README.md). In short:
+See [`mcp-server/README.md`](mcp-server/README.md). In short, register it from
+the published package (no checkout needed):
+
+```bash
+claude mcp add dss -e DSS_BASE_URL=https://dss.semtech.lv -- uvx --from "dss-ai-tools[mcp]" dss-mcp
+```
+
+The `mcp` extra requires Python ≥ 3.10. To run from a checkout instead:
 
 ```bash
 cd mcp-server

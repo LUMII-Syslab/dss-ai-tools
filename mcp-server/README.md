@@ -8,9 +8,20 @@ you change one.
 
 ## Install
 
-The MCP server runs from a checkout of this repo — it is not part of the `dss-ai-tools` PyPI package, which installs only the `dss` CLI.
+The easiest way is the published package, which provides the `dss-mcp` command.
+The `mcp` extra pulls in the `mcp` runtime (the CLI does not need it):
 
-The server needs the `mcp` package (the CLI does not):
+```bash
+pipx install "dss-ai-tools[mcp]"     # provides the `dss-mcp` command
+# or run without installing:
+uvx --from "dss-ai-tools[mcp]" dss-mcp
+```
+
+Requires Python ≥ 3.10 (the `mcp` package's floor).
+
+### From a checkout
+
+To run from a clone of this repo instead:
 
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
@@ -31,7 +42,8 @@ Each tool also accepts an optional `base_url` argument to override per call.
 ## Run
 
 ```bash
-DSS_BASE_URL=https://dss.semtech.lv python3 dss_mcp.py   # stdio transport
+DSS_BASE_URL=https://dss.semtech.lv dss-mcp          # if installed (stdio transport)
+DSS_BASE_URL=https://dss.semtech.lv python3 dss_mcp.py   # from a checkout
 ```
 
 Or with the MCP CLI for local inspection:
@@ -64,6 +76,10 @@ The `class_*` tools key on numeric ids: get a `class_id` from `resolve_class` an
 ### Claude Code
 
 ```bash
+# from the published package, no checkout needed
+claude mcp add dss -e DSS_BASE_URL=https://dss.semtech.lv -- uvx --from "dss-ai-tools[mcp]" dss-mcp
+
+# or from a checkout
 claude mcp add dss -e DSS_BASE_URL=https://dss.semtech.lv -- python3 /path/to/dss-ai-tools/mcp-server/dss_mcp.py
 ```
 
@@ -73,12 +89,13 @@ claude mcp add dss -e DSS_BASE_URL=https://dss.semtech.lv -- python3 /path/to/ds
 {
   "mcpServers": {
     "dss": {
-      "command": "python3",
-      "args": ["/path/to/dss-ai-tools/mcp-server/dss_mcp.py"],
+      "command": "uvx",
+      "args": ["--from", "dss-ai-tools[mcp]", "dss-mcp"],
       "env": { "DSS_BASE_URL": "https://dss.semtech.lv" }
     }
   }
 }
 ```
 
-Use the venv's interpreter (`.venv/bin/python3`) if you installed `mcp` there.
+To run from a checkout instead, set `command` to `python3` (or the venv's
+`.venv/bin/python3`) and `args` to the path of `dss_mcp.py`.
