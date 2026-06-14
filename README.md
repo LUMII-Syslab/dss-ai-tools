@@ -84,21 +84,9 @@ See [`docs/USAGE.md`](https://github.com/LUMII-Syslab/dss-ai-tools/blob/main/doc
 
 ## MCP server
 
-See [`mcp-server/README.md`](https://github.com/LUMII-Syslab/dss-ai-tools/blob/main/mcp-server/README.md). In short, register it from
-the published package (no checkout needed):
+See [`mcp-server/README.md`](https://github.com/LUMII-Syslab/dss-ai-tools/blob/main/mcp-server/README.md). 
 
-```bash
-claude mcp add dss -e DSS_BASE_URL=https://dss.semtech.lv -- uvx --from "dss-ai-tools[mcp]" dss-mcp
-```
-
-The `mcp` extra requires Python >= 3.10. To run from a checkout instead:
-
-```bash
-cd mcp-server
-python3 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-DSS_BASE_URL=https://dss.semtech.lv python3 dss_mcp.py
-```
+You can register it from the published PyPI package (no checkout needed).
 
 ## Exit codes (CLI)
 
