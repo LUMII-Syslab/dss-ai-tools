@@ -83,19 +83,36 @@ claude mcp add dss -e DSS_BASE_URL=https://dss.semtech.lv -- uvx --from "dss-ai-
 claude mcp add dss -e DSS_BASE_URL=https://dss.semtech.lv -- python3 /path/to/dss-ai-tools/mcp-server/dss_mcp.py
 ```
 
-### Claude Desktop (`claude_desktop_config.json`)
+### Claude Desktop
 
-```json
-{
-  "mcpServers": {
-    "dss": {
-      "command": "uvx",
-      "args": ["--from", "dss-ai-tools[mcp]", "dss-mcp"],
-      "env": { "DSS_BASE_URL": "https://dss.semtech.lv" }
-    }
-  }
-}
-```
+1. **Open the config file.** In Claude Desktop go to **Settings → Developer →
+   Edit Config**. That opens `claude_desktop_config.json`, located at:
+   - macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
+   - Windows: `%APPDATA%\Claude\claude_desktop_config.json`
 
-To run from a checkout instead, set `command` to `python3` (or the venv's
-`.venv/bin/python3`) and `args` to the path of `dss_mcp.py`.
+2. **Add the `dss` server** under `mcpServers` (merge this in if the file
+   already has other servers):
+
+   ```json
+   {
+     "mcpServers": {
+       "dss": {
+         "command": "uvx",
+         "args": ["--from", "dss-ai-tools[mcp]", "dss-mcp"],
+         "env": { "DSS_BASE_URL": "https://dss.semtech.lv" }
+       }
+     }
+   }
+   ```
+
+3. **Restart Claude Desktop** (quit completely, not just close the window).
+   Then open a chat and click the tools icon — `dss` and its tools should
+   appear.
+
+> **If `uvx` isn't found**, Claude Desktop launches with a minimal `PATH` and
+> may not see tools installed in your shell. Use the absolute path instead —
+> run `which uvx` (macOS/Linux) or `where uvx` (Windows) and put that full path
+> in `"command"`, e.g. `"/Users/you/.local/bin/uvx"`.
+
+To run from a checkout instead, set `"command"` to `"python3"` (or the venv's
+`.venv/bin/python3`) and `"args"` to `["/path/to/dss-ai-tools/mcp-server/dss_mcp.py"]`.

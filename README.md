@@ -1,20 +1,20 @@
 [![PyPI](https://img.shields.io/pypi/v/dss-ai-tools.svg)](https://pypi.org/project/dss-ai-tools/)
-[![License](http://img.shields.io/:license-mit-blue.svg)](https://raw.githubusercontent.com/LUMII-Syslab/viziquer/master/LICENSE)
+[![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/LUMII-Syslab/dss-ai-tools/blob/main/LICENSE)
 # dss-ai-tools
 
-Tools for exploring a [Data Shape Server (DSS)](https://github.com/LUMII-Syslab/data-shape-server) knowledge-graph schemas — classes, properties, their relations, and namespaces — over the DSS HTTP API. Three ways to use it, all sharing one small client:
+Tools for exploring a [Data Shape Server (DSS)](https://github.com/LUMII-Syslab/data-shape-server) knowledge graph schemas — classes, properties, their relations, and namespaces — over the DSS HTTP API. There are three ways to use it, all sharing one small client:
 
 | Component | What it is | Where |
 | --- | --- | --- |
-| **CLI** | A single-file Python client (`dss`), standard library only, Python ≥ 3.9. | [`dss.py`](dss.py) |
-| **Claude skill** | A self-contained Claude Code skill that drives the CLI. | [`skill/`](skill/) |
-| **MCP server** | An [MCP](https://modelcontextprotocol.io) server exposing the same endpoints as tools. | [`mcp-server/`](mcp-server/) |
+| **CLI** | A single-file Python client (`dss`), standard library only. Requires Python >= 3.10. | [`dss.py`](https://github.com/LUMII-Syslab/dss-ai-tools/blob/main/dss.py) |
+| **Claude skill** | A self-contained Claude Code skill that drives the CLI. | [`skill/`](https://github.com/LUMII-Syslab/dss-ai-tools/tree/main/skill) |
+| **MCP server** | An MCP server exposing the same endpoints as tools. | [`mcp-server/`](https://github.com/LUMII-Syslab/dss-ai-tools/tree/main/mcp-server) |
 
-The CLI is the source of truth; the skill and MCP server bundle a copy of `dss.py` so each is self-contained. Run [`scripts/sync.sh`](scripts/sync.sh) after editing the canonical `dss.py` to refresh the copies.
+The CLI implements the core functionality; the skill and MCP server bundle a copy of `dss.py` so each is self-contained. Run [`scripts/sync.sh`](https://github.com/LUMII-Syslab/dss-ai-tools/blob/main/scripts/sync.sh) after editing the canonical `dss.py` to refresh the copies.
 
 ## Configure
 
-All three read the same environment variables:
+All three approaches use the same environment variables:
 
 ```bash
 export DSS_BASE_URL=https://dss.semtech.lv   # default
@@ -80,18 +80,18 @@ mkdir -p ~/.claude/skills
 cp -R skill ~/.claude/skills/dss
 ```
 
-See [`docs/USAGE.md`](docs/USAGE.md) for setup, pointing it at a server, and example prompts.
+See [`docs/USAGE.md`](https://github.com/LUMII-Syslab/dss-ai-tools/blob/main/docs/USAGE.md) for setup, pointing it at a server, and example prompts.
 
 ## MCP server
 
-See [`mcp-server/README.md`](mcp-server/README.md). In short, register it from
+See [`mcp-server/README.md`](https://github.com/LUMII-Syslab/dss-ai-tools/blob/main/mcp-server/README.md). In short, register it from
 the published package (no checkout needed):
 
 ```bash
 claude mcp add dss -e DSS_BASE_URL=https://dss.semtech.lv -- uvx --from "dss-ai-tools[mcp]" dss-mcp
 ```
 
-The `mcp` extra requires Python ≥ 3.10. To run from a checkout instead:
+The `mcp` extra requires Python >= 3.10. To run from a checkout instead:
 
 ```bash
 cd mcp-server
