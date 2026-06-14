@@ -8,6 +8,8 @@ you change one.
 
 ## Install
 
+The MCP server runs from a checkout of this repo — it is not part of the `dss-ai-tools` PyPI package, which installs only the `dss` CLI.
+
 The server needs the `mcp` package (the CLI does not):
 
 ```bash
