@@ -1,13 +1,20 @@
 # Data Schema Exploration: AcademySampo
 
-A walkthrough of the data schema system (DSS) — surveying available knowledge-graph
-schemas and drilling into the Finnish AcademySampo academic-prosopography dataset.
+This is a example of using the Data Schema Server (DSS) showing information
+about the available knowledge graph schemas and exploring the AcademySampo
+academic-prosopography knowledge graph in detail.
+
+This conversation took place in the Claude Desktop application using 
+the Opus 4.8 model.
+
+A full transcript of this conversation is available online:
+- https://claude.ai/share/dd13bf64-83aa-412a-a7f1-3b353386abd9
 
 ---
 
 ## What data schemas are available?
 
-The DSS system exposes a large collection of knowledge-graph schemas (ontologies),
+The DSS system exposes a large collection of knowledge-graph schemas,
 each backed by a SPARQL endpoint. They span many domains:
 
 - **Large general knowledge graphs:** DBpedia (~483k classes), Wikidata (~85k classes)
