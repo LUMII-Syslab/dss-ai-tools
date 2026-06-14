@@ -2,8 +2,8 @@
 # Keep the bundled copies of dss.py in sync with the canonical one at the repo
 # root. The skill and the MCP server each need dss.py alongside them (a skill
 # folder must be self-contained; the MCP server imports `dss` from its own
-# dir), so the file is committed in three places. This script — and the matching
-# CI check below — keep them from drifting.
+# dir), so the file is committed in three places. Run this script after editing
+# the canonical dss.py; `--check` mode is suitable for a CI guard.
 #
 #   scripts/sync.sh          copy root dss.py -> skill/ and mcp-server/
 #   scripts/sync.sh --check  exit non-zero if any copy is stale (use in CI)
