@@ -1,6 +1,7 @@
+[![License](http://img.shields.io/:license-mit-blue.svg)](https://raw.githubusercontent.com/LUMII-Syslab/viziquer/master/LICENSE)
 # dss-ai-tools
 
-Tools for exploring a [Data Shape Server (DSS)](https://github.com/LUMII-Syslab/data-shape-server) knowledge-graph schema — classes, properties, their relations, and namespaces — over the DSS HTTP API. Three ways to use it, all sharing one small client:
+Tools for exploring a [Data Shape Server (DSS)](https://github.com/LUMII-Syslab/data-shape-server) knowledge-graph schemas — classes, properties, their relations, and namespaces — over the DSS HTTP API. Three ways to use it, all sharing one small client:
 
 | Component | What it is | Where |
 | --- | --- | --- |
@@ -54,7 +55,7 @@ ln -s "$(pwd)/dss.py" ~/.local/bin/dss && chmod +x dss.py
 
 The `class-*` commands key on numeric ids: get a class id from `resolve-class` and a property id from `resolve-property`.
 
-Output is indented JSON by default; pass `--compact` for single-line (pipe-friendly).
+Output is indented human-readable JSON by default; pass `--compact` for single-line (pipe-friendly).
 
 ```bash
 dss ontologies | jq '.[].db_schema_name'
