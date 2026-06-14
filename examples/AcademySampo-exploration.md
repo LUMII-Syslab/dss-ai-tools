@@ -1,6 +1,6 @@
 # Data Schema Exploration: AcademySampo
 
-This is a example of using the Data Schema Server (DSS) showing information
+This is a example of using the Data Shape Server (DSS) showing information
 about the available knowledge graph schemas and exploring the AcademySampo
 academic-prosopography knowledge graph in detail.
 
